@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoApp</title>
+    <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/education-2-27/32/user_staff_person_man_profile_boss_circle-512.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- TOAST MESSAGE -->
+    <div class="toast">
+        <div class="toast-content">
+            <div class="check">
+                <i class="fas fa-check"></i>
+            </div>
+
+            <div class="toast-msg">
+                <span class="text-1">Success</span>
+                <span class="text-2">Your task has been added</span>
+            </div>
+
+            <div class="close">
+                <i class="fas fa-xmark">&times</i>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-delete">
+        <div class="toast-delete-content">
+            <div class="check">
+                <i class="fas fa-check"></i>
+            </div>
+
+            <div class="toast-delete-msg">
+                <span class="text-1">Success</span>
+                <span class="text-2">Your task has been deleted</span>
+            </div>
+
+            <div class="delete-close">
+                <i class="fas fa-xmark">&times</i>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY -->
+    <div id="overlay">
+        <h1>What have you planned recently?</h1>
+        
+        <div class="type-selector">
+            <label class="task-type">     
+                <select id="task-type">
+                    <option class="choice" value="hide"> Type of task </option>
+                    <option class="choice" value="personal"> Personal </option>
+                    <option class="choice" value="business"> Business </option>
+                </select>
+            </label>
+        </div>
+
+        <div class="task-input">
+            <input class="text-input" id="text-input" type="text" placeholder="Type here...">
+            <button class="add-btn" id="add-btn"> Add </button>
+
+            <!-- <button onclick="off()" class="add-btn"> Add </button> -->
+        </div>
+        <div class="close-overlay-btn">
+            <button class="close-btn" onclick="off()"><i class="fas fa-arrow-left"></i></button>
+        </div>
+        
+    </div>
+
+    <div class="wrapper">
+        <div id="mySidenav" class="sidenav">
+            <!-- close button -->
+            <button class="close-btn" onclick="closeNav()"><i class="fas fa-arrow-left"></i></button>
+            <!-- profile section -->
+            <div class="profile">
+                <div class="profile-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>Nguyen Minh Tung</div>
+            </div>
+            <!-- list section -->
+            <div class="sidenav-list">
+                <ul>
+                    <li><a href=""><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href=""><i class="fas fa-briefcase"></i>Business tasks</a></li>
+                    <li><a href=""><i class="fas fa-wallet"></i>Personal tasks</a></li>
+                    <li><a href=""><i class="fas fa-chart-line"></i>Analytics</a></li>
+                    <li><a href=""><i class="fas fa-screwdriver"></i>Settings</a></li>
+                </ul>
+            </div>
+            <!-- waves -->
+            <div class="box">
+                <div class="wave one"></div>
+                <div class="wave two"></div>
+                <div class="wave three"></div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+
+            <div class="topnav">
+                <div class="sidebar-btn">
+                    <button class="goto-btn" onclick="openNav()"><i class="fas fa-bars" ></i></button>
+                </div>
+                
+                <!-- SEARCH AND REMINDER BUTTON -->
+                <div class="topnav-btn">
+                    <div class="search"><a href="#"><i class="fas fa-search"></i></a></div>
+                    <div class="reminder"><a href="#"><i class="fas fa-bell"></i></a></div>
+                </div>
+            </div>
+            
+            <!-- HEADER -->
+            <div class="header">
+                <div class="greeting">
+                    <h1>What's up, Tung</h1>
+                </div>
+                <div class="categories">
+                    Categories
+                </div>
+            </div>
+
+            <!-- OVERALL TASKS -->
+            <div class="overall-tasks">
+                <div class="business-task">
+                    <div class="task-head">
+                        <div>
+                            <h2>Business tasks</h2>
+                            <div class="BT-task-amount">
+                                <span id="BTnum">0</span>
+                                <span>tasks</span>
+                            </div>
+                        </div>
+                        <div class="task-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- PROCESS BAR -->
+                    <div class="BT-process-bar">
+                        <!-- <div class="BT-process-per" per="40%" style="max-width: 40%;"></div> -->
+                        <div class="BT-process-per">
+                            <span class="BTtooltip">
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="personal-task">
+                    <div class="task-head">
+                        <div>
+                            <h2>Personal tasks</h2>
+                            <div class="PT-task-amount">
+                                <span id="PTnum">0</span>
+                                <span>tasks</span>
+                            </div>
+                        </div>
+                        <div class="task-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+
+                    <!-- PROCESS BAR -->
+                    <div class="PT-process-bar">
+                        <!-- <div class="PT-process-per" per="75%" style="max-width: 75%;"></div> -->
+                        <div class="PT-process-per">
+                            <span class="PTtooltip">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- TASKS LIST -->
+
+            <div class="tasks-list">
+
+                <div class="list-header">
+                    <div class="header-name">
+                        Today's tasks
+                    </div>
+
+                    <div class="new-btn" onclick="on()">
+                        +
+                    </div>
+                </div>
+                
+                <div class="tasks">
+                    <!-- <div class="taskItem">
+                        <input 
+                            class = "check-btn"
+                            type="checkbox"
+                            onclick=""
+                        />
+                        <div class="task-content" id="task-line">
+                            53453452
+                        </div>
+                        <div class="actions">
+                            <div>
+                                <button class="delete-btn" onclick="">
+                                    <i class="fas fa-xmark">&times</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/scripts.js"></script>  
+</body>
+</html>

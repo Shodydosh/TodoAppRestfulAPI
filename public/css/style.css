@@ -1,0 +1,716 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin Sans');
+@import url('https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'JoseFin Sans', sans-serif;
+}
+
+/* WAVE */
+  
+.box {
+position: absolute;
+top: -25%;
+transform: rotate(80deg);
+left: 25%;
+}
+
+.wave {
+position: absolute;
+opacity: 0.4;
+width: 1200px;
+height: 1000px;
+border-radius: 43%;
+}
+
+.wave.one {
+animation: rotate 14000ms infinite linear;
+opacity: 0.1;
+background: #E7F6F2;
+}
+
+.wave.two {
+animation: rotate 7000ms infinite linear;
+opacity: 0.1;
+background: #E7F6F2;
+}
+
+.wave.three {
+animation: rotate 15000ms infinite linear;
+background: #E7F6F2;
+}
+
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    from {
+      transform: rotate(360deg);
+    }
+}
+
+/* OVERLAY  */
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%;
+    height: 100%; 
+    background-color: #2C3333;
+    opacity: 1;
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    transition: 0.7s;
+    animation: overlayEffect 1s;
+}
+
+@keyframes overlayEffect {
+    from {
+        opacity: 0;
+        width: 0%;
+    }
+    to {
+        opacity: 1;
+        width: 100%;
+    }
+}
+
+#overlay h1 {
+    color: #E7F6F2;
+    margin: 40px 20px;
+    font-size: 50px;
+    transition: 2s;
+}
+
+/* #overlay .task-type {
+    padding-right: ;
+} */
+
+#overlay .type-selector {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#overlay .task-type {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+#overlay .task-type select{
+    color: #395B64;
+    display: block; /*hide original SELECT element: */
+    background-color: #E7F6F2;
+    transition: 2s;
+    padding: 15px;
+    font-size: 25px;
+    border-radius: 25px;
+    border: none;
+    height: 100px;
+    width: 100%;
+}
+#overlay .task-type .choice{
+    font-size: 25px;
+}
+
+#overlay .task-input {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin: 20px;
+}
+
+#overlay .task-input .text-input{
+    background-color: #E7F6F2;
+    border: none;
+    font-size: 25px;
+    padding: 30px;
+    border-radius: 15px;
+    color: #395B64;
+    height: 100px;
+    width: 100%;
+    /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
+}
+
+#overlay .task-input .add-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #E7F6F2;
+    color: #395B64;
+    border: none;
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 100px;
+    width: 110px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#overlay .task-input .add-btn:hover {
+    opacity: 0.8;
+    animation: glowUp 1s ease-in-out;
+}
+
+@keyframes glowUP {
+    0%{
+        box-shadow: 
+        0 0 20px white,
+        0 0 50px rgb(255, 255, 255);
+    }
+}
+
+#overlay .task-input .add-btn:active {
+    opacity: 0.9    ;
+}
+
+#overlay .close-overlay-btn .close-btn {
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 0px;
+    color: #E7F6F2;
+    background-color: #2C3333;
+    cursor: pointer;
+}
+
+/* WRAPPER */
+
+.wrapper {
+    display: flex;
+    position: relative;
+}
+
+.wrapper .sidenav .profile {
+    display:inline-block;
+}
+
+.wrapper .sidenav {
+    position: fixed;
+    width: 0px;
+    height: 100%;
+    background: #2C3333;
+    padding: 30px 0;
+    display: block;
+    transition: 0.7s;
+    overflow-x: hidden;  /* Hide horizontal scrollbar */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    z-index: 1;
+    top: 0;
+    display: block;
+    /* text-overflow: clip; */
+    /* border-right: 1px solid #dde3ea; */
+}   
+
+.sidenav .close-btn {
+    margin-top: 5px;
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    font-size: 25px;
+    margin-left: 0px;
+    color: #fff;
+    border: none;
+    outline: none;
+    background-color: #2C3333;
+    cursor: pointer;
+    /* transition: 1s; */
+}
+
+.wrapper .sidenav .profile {
+    color: #fff;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 30px;
+    padding: 10px 30px;
+    font-size: 40px;
+}
+
+.wrapper .sidenav .profile .profile-icon {
+    font-size: 100px;
+    margin-bottom: 30px;
+}
+
+.wrapper .sidenav ul li {
+    font-size: 35px;
+    padding: 15px 20px;
+}
+
+.wrapper .sidenav ul li a{
+    color: #fff;
+    display: block;
+}
+
+.wrapper .sidenav ul li a .fas{
+    padding-left: 20px;
+    padding-right: 40px;
+    width: 25px;
+}
+
+.wrapper .sidenav ul li:hover{
+    transition: 0.8s;
+}
+
+/* TOPNAV */
+
+.wrapper .main-content .topnav{
+    background: #fff;
+    /* border-bottom: 1px solid #dde3ea; */
+}
+
+.wrapper .sidebar-btn .goto-btn {
+    border: none;
+    outline: none;
+    font-size: 50px;
+    background-color: #fff;
+    color: #2C3333;
+    cursor: pointer;
+}
+
+.wrapper .sidebar-btn .goto-btn:active,
+.wrapper .close-btn:active {
+    opacity: 0.8;
+}
+
+.wrapper .topnav {
+    display: flex; 
+    justify-content: space-between;
+    font-size: 18px;
+    padding: 5px 5px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.wrapper .topnav .topnav-btn {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.wrapper .topnav .topnav-btn .fas {
+    margin-top: 1px;
+    font-size: 40px;
+    padding: 5px 15px;
+    color: #2C3333;
+}
+
+.wrapper .main-content {
+    width: 100%;
+    margin-left: 0px;
+    background: #fff;
+    color: #2C3333;
+}
+
+/* GREETING */
+
+.wrapper .greeting {
+    /* background-color: red; */
+    animation: textAppear 3s 1;
+    padding: 10px;
+    margin: 30px 5px;
+    margin-bottom: 50px;
+    font-size: 35px;
+}
+
+.wrapper .categories {
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 25px;
+    color: #2C3333;
+}
+
+@keyframes textAppear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* OVERALL TASKS */
+
+.wrapper .overall-tasks {
+    width: 100%;
+    float: left;
+    display: flex;
+}
+
+.wrapper h1 {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.wrapper .overall-tasks .business-task,
+.wrapper .overall-tasks .personal-task {
+    color: black;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px, rgba(0, 0, 0, 0.15) 0px 5px 5px; */
+
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.15) 0px 10px 10px; */
+}
+
+.wrapper .overall-tasks .personal-task {
+    background-color: #7ca4b0;
+}
+.wrapper .overall-tasks .business-task {
+    background-color: #A5C9CA;
+}
+
+.wrapper .overall-tasks .business-task .task-head,
+.wrapper .overall-tasks .personal-task .task-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.wrapper .overall-tasks .business-task .task-head .task-icon,
+.wrapper .overall-tasks .personal-task .task-head .task-icon {
+    font-size: 30px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.wrapper .overall-tasks .business-task h2,
+.wrapper .overall-tasks .personal-task h2 {
+    margin: 5px;
+    font-size: 20px;
+    font-style: normal;
+}
+
+.wrapper .overall-tasks .business-task .BT-task-amount,
+.wrapper .overall-tasks .personal-task .PT-task-amount {
+    margin-left : 5px;
+    font-size: 18px;
+    opacity: 0.5;
+}
+
+.overall-tasks .business-task .BT-process-bar,
+.overall-tasks .personal-task .PT-process-bar {
+    background: rgb(255, 255, 255);
+    margin: 40px 10px 10px 10px;
+    height: 6px;
+    border-radius: 2px;
+}
+
+.overall-tasks .business-task .BT-process-per,
+.overall-tasks .personal-task .PT-process-per {
+    border-radius: 1px;
+    height: 6px;
+    border-radius: 2px;
+    position: relative;
+    animation: fillBars 3s 1;
+}
+
+.overall-tasks .business-task .BT-process-per {
+    background: black;
+}
+.overall-tasks .personal-task .PT-process-per {
+    background: black;
+}
+
+@keyframes fillBars {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.BTtooltip,
+.PTtooltip {
+    width: 34px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    right: -13px;
+    background-color: #2C3333;
+    top: -24px;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 5px;
+    padding-top: 5px;
+    border-radius: 3px;
+    /* z-index: 2; */
+}
+
+.BTtooltip::before,
+.PTtooltip::before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    bottom: -8px;
+    height: 8px;
+    width: 8px;
+    /* z-index: 1; */
+    background-color: #2C3333;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+/* TASKS LIST */
+
+.wrapper .main-content .tasks-list .todos-empty{
+    opacity: 0.5;
+    font-size: 20px;
+    color: black;
+    margin: 15px;
+}
+
+.wrapper .main-content .tasks-list {
+    width: 100%;
+    padding: 5px;
+    /* background-color: red; */
+}
+
+.wrapper .main-content .tasks-list .list-header {
+    font-size: 25px;
+    padding: 10px;
+    margin-top: 140px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper .main-content .tasks-list .list-header .new-btn {
+    background-color: #2C3333;
+    color: #E7F6F2;
+    padding: 2px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px, rgba(0, 0, 0, 0.15) 0px 5px 5px; */
+}
+
+.wrapper .main-content .tasks-list .list-header .new-btn:hover {
+    opacity: 0.8;
+}
+
+.wrapper .main-content .tasks-list .list-header .new-btn:active {
+    opacity: 0.9;
+}
+
+.wrapper .main-content .tasks-list .list-header .task-head {
+    font-size: 25px;
+    padding: 10px;
+    padding-top: 20px;
+    margin-top: 140px;
+}
+
+.tasks-list .tasks {
+    animation: taskAppear 1s 1;
+}
+
+@keyframes taskAppear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.tasks-list .tasks .PT-task{
+    background-color: #7ca4b0;
+}
+
+.tasks-list .tasks .BT-task{
+    background-color: #A5C9CA;
+}
+
+.tasks-list .tasks .taskItem {
+    /* background-color: #A5C9CA; */
+    /* background-color: red; */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px, rgba(0, 0, 0, 0.15) 0px 5px 5px; */
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.tasks-list .tasks .taskItem .PT-delete-btn  {
+    background-color: #7ca4b0;
+}
+.tasks-list .tasks .taskItem .BT-delete-btn {
+    background-color: #A5C9CA;
+}
+.tasks-list .tasks .active-task {
+    font-style: italic;
+    background-color: #EAEBED;
+    opacity: 0.8;
+}
+
+.tasks-list .tasks .active-task .PT-delete-btn,
+.tasks-list .tasks .active-task .BT-delete-btn {
+    background-color: #EAEBED;
+}
+
+.tasks-list .tasks .taskItem .task-content {
+    /* text-decoration: line-through; */
+    /* background-color: red; */
+    margin-top: 15px;
+    font-size: 20px;
+    color: black;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tasks-list .tasks .marked {
+    text-decoration: line-through;
+    opacity: 0.3;
+}
+
+.tasks-list .tasks .taskItem .delete-btn {
+    border: none;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.tasks-list .tasks .taskItem .actions {
+    display: flex;
+    justify-content: right;
+}
+
+.delete-btn {
+    font-size: 40px;
+    font-weight: 200;
+    font-style: bold;
+    padding-top: 1px;
+}
+
+/* MARKED */
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+/*! TOAST MESSAGE */
+
+.toast, 
+.toast-delete {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    border-radius: 12px;
+    background: #fff;
+    /* background: #fff; */
+    padding: 20px 35px 20px 25px;
+    z-index: 2;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid #2C3333;
+    transition: fadeOut linear 1s 2s;
+    /* border-left: 6px solid #fff; */
+    /* justify-content: center; */
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.toast,
+.toast-delete{
+    transition-delay: 2s;
+    animation: toastAppear 1s 1, fadeOut linear 1s 2s;
+    display: none;
+}
+
+.active {
+    /* animation: toastClose 1s 1; */
+    display: block;
+    /* transform: translateX(0%); */
+}
+
+@keyframes toastAppear {
+    from {
+        opacity: 0;
+    }   
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes toastClose {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.toast .toast-content,
+.toast-delete .toast-delete-content {
+    display: flex;
+    align-items: center;
+}
+
+.toast .toast-content .toast-msg,
+.toast-delete .toast-delete-content .toast-delete-msg {
+    display: flex;
+    flex-direction: column; 
+    margin: 0 20px;
+    /* align-items: center; */
+}
+
+.toast .toast-content .check,
+.toast-delete .toast-delete-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #2C3333;
+}
+
+.toast .toast-content .close,
+.toast-delete .toast-delete-content .delete-close {
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.toast .toast-content .close:hover,
+.toast-delete .toast-delete-content .delete-close:hover {
+    opacity: 1;
+}
+
+.toast .toast-content .text-1,
+.toast-delete .toast-delete-content .text-1 {
+    /* background-color: rebeccapurple; */
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.toast .toast-content .text-2,
+.toast-delete .toast-delete-content .text-2 {
+    font-size: 15px;
+    opacity: 0.5;
+}
