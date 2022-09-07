@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 
 //! IMPORT ROUTES   
 
-const taskRoute = require('./routes/task');
-app.use('/task', taskRoute)
+const taskRoute = require('./routes/home');
+app.use('/home', taskRoute)
 
 //! ROUTES
 

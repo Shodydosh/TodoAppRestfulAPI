@@ -27,6 +27,15 @@ router.post('/', (req, res) => {
         .catch(err => {
             res.json({message : err})
         })
-})
+} );
+
+router.delete('/:taskID', async (req, res) => {
+    try{
+        const removeTask = await Task.remove({ _id: req.params.taskID })
+        console.log("deletion success")
+    } catch (err) {
+        res.json({message : err});
+    }
+} );
 
 module.exports = router;
