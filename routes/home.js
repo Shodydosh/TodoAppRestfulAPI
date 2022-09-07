@@ -29,10 +29,25 @@ router.post('/', (req, res) => {
         })
 } );
 
+//! DELETE TASK
 router.delete('/:taskID', async (req, res) => {
     try{
         const removeTask = await Task.remove({ _id: req.params.taskID })
         console.log("deletion success")
+    } catch (err) {
+        res.json({message : err});
+    }
+} );
+
+//! UPDATE TASK PROPERTIES
+router.patch('/:taskID', async (req, res) => {
+    try{
+        const updatedTask = await Task.updateOne(
+            { _id: req.params.taskID },
+            { $set: { title: req.body.title } }
+        );
+        res.json(updatedTask)
+        console.log("update successfully")
     } catch (err) {
         res.json({message : err});
     }
