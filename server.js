@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 //! IMPORT ROUTES   
 
 const taskRoute = require('./routes/home');
+const connectDB = require('./config/db');
 app.use('/home', taskRoute)
 
 //! ROUTES
@@ -29,10 +30,14 @@ app.get('/', (req, res) => {
 
 //! CONNECT TO DB
 
+
+
 mongoose.connect(
     process.env.DB_CONNECTION, 
     () => console.log('Connected to DB')
 )
+
+
 
 app.listen(3000);
 console.log('Server started at http://localhost:' + port);
