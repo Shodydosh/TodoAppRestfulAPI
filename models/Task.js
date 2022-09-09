@@ -1,11 +1,24 @@
 const mongoose = require('mongoose');
 
 const taskSchema = mongoose.Schema({
-    title: String,
-    status: Boolean,
-    type: String,
-    time: String, 
-    id: Number
+    title: {
+        type: String,
+        require: true
+    },
+    status: {
+        type: Boolean,
+        default: false
+    },
+    type: {
+        type: String,
+        require: true
+    },
+    time: {
+        type: Date,
+        default: Date.now
+    }
 })
 
-module.exports = mongoose.model('Tasks', taskSchema)
+module.exports = mongoose.model('Task', taskSchema)
+
+//* this is a blueprint for the database

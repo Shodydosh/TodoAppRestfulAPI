@@ -3,41 +3,27 @@ const app = express();
 const port = process.env.PORT || 3000;
 const path = require('path');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 require('dotenv/config');
-// get the express package into this file 
 
-// to make sure that the bodyParser middleware run before those reqs below
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-//! IMPORT ROUTES   
-
-const taskRoute = require('./routes/home');
-const connectDB = require('./config/db');
-app.use('/home', taskRoute)
-
 //! ROUTES
+const homeRoute = require('./routes/home');
+app.use('/home', homeRoute);
 
-//This will tell Express to serve everything in the '/public' directory as static content.
-//You will need an endpoint that serves the CSS file, or use a static directory. 
-//If you are using Express, the following code when configuring the app will set a directory which will be served statically.
+app.set("view engine", "ejs")
+
+//To serve static files such as images, CSS files, and JavaScript files, 
+//use the express.static built-in middleware function in Express.
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-    const index = path.join(__dirname, '/public', 'index.html');
-    res.sendFile(index);
-});
-
 //! CONNECT TO DB
+const DBurl = "mongodb://127.0.0.1:27017/taskdb"
+mongoose.connect(DBurl, { useNewUrlParser: true, useUnifiedTopology: true });
 
-
-
-mongoose.connect(
-    process.env.DB_CONNECTION, 
-    () => console.log('Connected to DB')
-)
-
-
-
+//! START HOSTING
 app.listen(3000);
 console.log('Server started at http://localhost:' + port);
