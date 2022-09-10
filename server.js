@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const taskRoute = require('./routes/task');
+const ejsLint = require('ejs-lint');
 
 
 const connectDB = require('./config/db');
@@ -24,54 +25,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser());
 app.use('/api/task', taskRoute);
-app.get("get", (req, res) => {
-    res.send('API is runnin good!');
-})
-
 
 //! EJS
 app.set("view engine", "ejs")
-app.get('/', function (req, res) {
+app.get('/', async function (req, res) {
     res.render('index');
 });
-// //! public
+
+//! public
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
+//! HOSTING
 app.listen(PORT, console.log(`Server listening on ${PORT}`.yellow.bold));
-
-
-
-
-
-
-
-
-// const mongoose = require('mongoose');
-// require('dotenv/config');
-
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.json());
-
-// //! EJS
-// app.set("view engine", "ejs")
-// app.get('/', function (req, res) {
-//     res.render('index');
-// });
-
-// //! ROUTES
-// const homeRoute = require('./routes/home');
-// app.use("home", homeRoute);
-
-// //To serve static files such as images, CSS files, and JavaScript files,
-// //use the express.static built-in middleware function in Express.
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// //! CONNECT TO DB
-// const DBurl = "mongodb://127.0.0.1:27017/taskdb"
-// mongoose.connect(DBurl, { useNewUrlParser: true, useUnifiedTopology: true });
-
-// //! START HOSTING
-// app.listen(3000);
-// console.log('Server started at http://localhost:' + port);

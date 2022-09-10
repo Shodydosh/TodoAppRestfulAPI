@@ -153,6 +153,21 @@ const renderTasks = arr => {
     todoListEl.innerHTML = content;
 }
 
+function validateForm() {
+    var type = document.forms["myForm"]["type"].value;
+    var title = document.forms["myForm"]["title"].value;
+
+    if (type == "hide") {
+        alert('Hãy chọn loại công việc')
+        return false;
+    }
+
+    if (title == "") {
+        alert("Tiêu đề công việc không được để trống");
+        return false;
+    };
+}
+
 // // Xóa công việc
 // const deleteTask = async (id) => {
 //     try {
@@ -214,7 +229,7 @@ const renderTasks = arr => {
 //         // Tạo công việc mới
 //         let newTodo = {
 //             title: title,
-//             status: false, 
+//             status: false,
 //             type: type,
 //             time: timeDate
 //         }
@@ -235,20 +250,6 @@ const renderTasks = arr => {
 // }
 
 // // Thêm công việc bằng nút "THÊM"
-function validateForm() {
-    var type = document.forms["myForm"]["type"].value;
-    var title = document.forms["myForm"]["title"].value;
-
-    if (type == "hide") {
-        alert('Hãy chọn loại công việc')
-        return false;
-    }
-
-    if (title == "") {
-        alert("Tiêu đề công việc không được để trống");
-        return false;
-    };
-}
 
 // btnAddTask.addEventListener("click", () => {
 //     console.log("clicked");

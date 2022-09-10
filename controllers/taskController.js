@@ -130,6 +130,9 @@ exports.getAllTask = asyncHandler(async (req, res) => {
                 console.log("Error retrieving tasks list!");
             } else {
                 res.json(tasks);
+                html: () => {
+                    res.render('index.ejs', { tasks: tasks });
+                }
             }
         })
 })

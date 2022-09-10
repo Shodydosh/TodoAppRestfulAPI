@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin Sans');
 @import url('https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,58 +11,62 @@
 }
 
 /* WAVE */
-  
+
 .box {
-position: absolute;
-top: -25%;
-transform: rotate(80deg);
-left: 25%;
+    position: absolute;
+    top: -25%;
+    transform: rotate(80deg);
+    left: 25%;
 }
 
 .wave {
-position: absolute;
-opacity: 0.4;
-width: 1200px;
-height: 1000px;
-border-radius: 43%;
+    position: absolute;
+    opacity: 0.4;
+    width: 1200px;
+    height: 1000px;
+    border-radius: 43%;
 }
 
 .wave.one {
-animation: rotate 14000ms infinite linear;
-opacity: 0.1;
-background: #E7F6F2;
+    animation: rotate 14000ms infinite linear;
+    opacity: 0.1;
+    background: #E7F6F2;
 }
 
 .wave.two {
-animation: rotate 7000ms infinite linear;
-opacity: 0.1;
-background: #E7F6F2;
+    animation: rotate 7000ms infinite linear;
+    opacity: 0.1;
+    background: #E7F6F2;
 }
 
 .wave.three {
-animation: rotate 15000ms infinite linear;
-background: #E7F6F2;
+    animation: rotate 15000ms infinite linear;
+    background: #E7F6F2;
 }
 
 @keyframes rotate {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     from {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
 /* OVERLAY  */
 
 #overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
     width: 100%;
-    height: 100%; 
+    height: 100%;
     background-color: #2C3333;
     opacity: 1;
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
     transition: 0.7s;
     animation: overlayEffect 1s;
 }
@@ -72,6 +76,7 @@ background: #E7F6F2;
         opacity: 0;
         width: 0%;
     }
+
     to {
         opacity: 1;
         width: 100%;
@@ -100,9 +105,10 @@ background: #E7F6F2;
     width: 100%;
 }
 
-#overlay .task-type select{
+#overlay .task-type select {
     color: #395B64;
-    display: block; /*hide original SELECT element: */
+    display: block;
+    /*hide original SELECT element: */
     background-color: #E7F6F2;
     transition: 2s;
     padding: 15px;
@@ -112,7 +118,8 @@ background: #E7F6F2;
     height: 100px;
     width: 100%;
 }
-#overlay .task-type .choice{
+
+#overlay .task-type .choice {
     font-size: 25px;
 }
 
@@ -122,7 +129,7 @@ background: #E7F6F2;
     margin: 20px;
 }
 
-#overlay .task-input .text-input{
+#overlay .task-input .text-input {
     background-color: #E7F6F2;
     border: none;
     font-size: 25px;
@@ -156,15 +163,15 @@ background: #E7F6F2;
 }
 
 @keyframes glowUP {
-    0%{
-        box-shadow: 
-        0 0 20px white,
-        0 0 50px rgb(255, 255, 255);
+    0% {
+        box-shadow:
+            0 0 20px white,
+            0 0 50px rgb(255, 255, 255);
     }
 }
 
 #overlay .task-input .add-btn:active {
-    opacity: 0.9    ;
+    opacity: 0.9;
 }
 
 #overlay .close-overlay-btn .close-btn {
@@ -189,7 +196,7 @@ background: #E7F6F2;
 }
 
 .wrapper .sidenav .profile {
-    display:inline-block;
+    display: inline-block;
 }
 
 .wrapper .sidenav {
@@ -200,14 +207,16 @@ background: #E7F6F2;
     padding: 30px 0;
     display: block;
     transition: 0.7s;
-    overflow-x: hidden;  /* Hide horizontal scrollbar */
-    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden;
+    /* Hide horizontal scrollbar */
+    overflow-y: hidden;
+    /* Hide vertical scrollbar */
     z-index: 1;
     top: 0;
     display: block;
     /* text-overflow: clip; */
     /* border-right: 1px solid #dde3ea; */
-}   
+}
 
 .sidenav .close-btn {
     margin-top: 5px;
@@ -243,24 +252,24 @@ background: #E7F6F2;
     padding: 15px 20px;
 }
 
-.wrapper .sidenav ul li a{
+.wrapper .sidenav ul li a {
     color: #fff;
     display: block;
 }
 
-.wrapper .sidenav ul li a .fas{
+.wrapper .sidenav ul li a .fas {
     padding-left: 20px;
     padding-right: 40px;
     width: 25px;
 }
 
-.wrapper .sidenav ul li:hover{
+.wrapper .sidenav ul li:hover {
     transition: 0.8s;
 }
 
 /* TOPNAV */
 
-.wrapper .main-content .topnav{
+.wrapper .main-content .topnav {
     background: #fff;
     /* border-bottom: 1px solid #dde3ea; */
 }
@@ -280,7 +289,7 @@ background: #E7F6F2;
 }
 
 .wrapper .topnav {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     font-size: 18px;
     padding: 5px 5px;
@@ -289,7 +298,7 @@ background: #E7F6F2;
 }
 
 .wrapper .topnav .topnav-btn {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
 }
 
@@ -330,6 +339,7 @@ background: #E7F6F2;
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -364,6 +374,7 @@ background: #E7F6F2;
 .wrapper .overall-tasks .personal-task {
     background-color: #7ca4b0;
 }
+
 .wrapper .overall-tasks .business-task {
     background-color: #A5C9CA;
 }
@@ -391,7 +402,7 @@ background: #E7F6F2;
 
 .wrapper .overall-tasks .business-task .BT-task-amount,
 .wrapper .overall-tasks .personal-task .PT-task-amount {
-    margin-left : 5px;
+    margin-left: 5px;
     font-size: 18px;
     opacity: 0.5;
 }
@@ -416,6 +427,7 @@ background: #E7F6F2;
 .overall-tasks .business-task .BT-process-per {
     background: black;
 }
+
 .overall-tasks .personal-task .PT-process-per {
     background: black;
 }
@@ -424,6 +436,7 @@ background: #E7F6F2;
     from {
         width: 0%;
     }
+
     to {
         width: 100%;
     }
@@ -461,7 +474,7 @@ background: #E7F6F2;
 
 /* TASKS LIST */
 
-.wrapper .main-content .tasks-list .todos-empty{
+.wrapper .main-content .tasks-list .todos-empty {
     opacity: 0.5;
     font-size: 20px;
     color: black;
@@ -517,16 +530,17 @@ background: #E7F6F2;
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
 
-.tasks-list .tasks .PT-task{
+.tasks-list .tasks .PT-task {
     background-color: #7ca4b0;
 }
 
-.tasks-list .tasks .BT-task{
+.tasks-list .tasks .BT-task {
     background-color: #A5C9CA;
 }
 
@@ -543,12 +557,14 @@ background: #E7F6F2;
     margin-top: 15px;
 }
 
-.tasks-list .tasks .taskItem .PT-delete-btn  {
+.tasks-list .tasks .taskItem .PT-delete-btn {
     background-color: #7ca4b0;
 }
+
 .tasks-list .tasks .taskItem .BT-delete-btn {
     background-color: #A5C9CA;
 }
+
 .tasks-list .tasks .active-task {
     font-style: italic;
     background-color: #EAEBED;
@@ -603,7 +619,7 @@ background: #E7F6F2;
 
 /*! TOAST MESSAGE */
 
-.toast, 
+.toast,
 .toast-delete {
     position: absolute;
     top: 25px;
@@ -624,13 +640,14 @@ background: #E7F6F2;
     from {
         opacity: 100%;
     }
+
     to {
         opacity: 0;
     }
 }
 
 .toast,
-.toast-delete{
+.toast-delete {
     transition-delay: 2s;
     animation: toastAppear 1s 1, fadeOut linear 1s 2s;
     display: none;
@@ -645,7 +662,8 @@ background: #E7F6F2;
 @keyframes toastAppear {
     from {
         opacity: 0;
-    }   
+    }
+
     to {
         opacity: 1;
     }
@@ -655,6 +673,7 @@ background: #E7F6F2;
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -669,7 +688,7 @@ background: #E7F6F2;
 .toast .toast-content .toast-msg,
 .toast-delete .toast-delete-content .toast-delete-msg {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     margin: 0 20px;
     /* align-items: center; */
 }
