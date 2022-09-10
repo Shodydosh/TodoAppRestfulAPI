@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const expressHandler = require('express-async-handler');
+const asyncHandler = require('express-async-handler');
 
 const Task = require('../models/taskModel');
 
@@ -9,7 +9,7 @@ const Task = require('../models/taskModel');
  * @access Public
  */
 
-exports.createTask = expressHandler(async (req, res) => {
+exports.createTask = asyncHandler(async (req, res) => {
     const { title, status, type, time } = req.body;
     const task = await Task.create({ title, status, type, time });
     //HTTP Status 201 indicates that as a result of HTTP POST request, 
@@ -27,7 +27,7 @@ exports.createTask = expressHandler(async (req, res) => {
  * @access Public
  */
 
-exports.updateTask = expressHandler(async (req, res) => {
+exports.updateTask = asyncHandler(async (req, res) => {
     const { title, status, type, time } = req.body;
     // existTask de check xem co task nao da ton tai voi id giong khong
     const existTask = await Task.findOne({ _id: req.params.id });
@@ -61,7 +61,7 @@ exports.updateTask = expressHandler(async (req, res) => {
  * @access Public
  */
 
-exports.deleteTask = expressHandler(async (req, res) => {
+exports.deleteTask = asyncHandler(async (req, res) => {
     // existTask de check xem co task nao da ton tai voi id giong khong
     const existTask = await Task.findOne({ _id: req.params.id });
     if (existTask) {
@@ -89,11 +89,35 @@ exports.deleteTask = expressHandler(async (req, res) => {
  * @access Public
  */
 
-exports.getAllTask = expressHandler(async (req, res) => {
+exports.getSingleTasks = asyncHandler(async (req, res) => {
+    // existTask de check xem co task nao da ton tai voi id giong khong
+    const existTask = await Task.findOne({ _id: req.params.id });
+    if (existTask) {
+        res.status(200).json({
+            success: true,
+            data: existTask,
+            message: 'Task found!!'
+        })
+    } else {
+        res.status(401).json({
+            success: false,
+            data: null,
+            message: 'Task not found!!'
+        })
+    }
+})
+
+/**
+ * @desc for get all tasks 
+ * @route /api/task
+ * @access Public
+ */
+
+exports.getAllTask = asyncHandler(async (req, res) => {
     Task.find({})
         .exec(function (err, tasks) {
             if (err) {
-                console.log("error retrieving tasks list!");
+                console.log("Error retrieving tasks list!");
             } else {
                 res.json(tasks);
             }
