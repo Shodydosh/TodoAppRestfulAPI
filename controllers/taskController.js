@@ -49,6 +49,35 @@ exports.updateTask = expressHandler(async (req, res) => {
         //because it lacks valid authentication credentials for the requested resource.
         res.status(401).json({
             success: false,
+            data: null,
+            message: 'Task not found!!'
+        })
+    }
+})
+
+/**
+ * @desc for delete specific task 
+ * @route /api/task
+ * @access Public
+ */
+
+exports.deleteTask = expressHandler(async (req, res) => {
+    // existTask de check xem co task nao da ton tai voi id giong khong
+    const existTask = await Task.findOne({ _id: req.params.id });
+    if (existTask) {
+        await existTask.remove();
+        // HTTP 200 OK success status response code indicates that the request has succeeded. 
+        // A 200 response is cacheable by default
+        res.status(200).json({
+            success: true,
+            message: 'Task deleted successfully!!'
+        })
+    } else {
+        // HTTP 401 Unauthorized response status code indicates that the client request has not been completed 
+        //because it lacks valid authentication credentials for the requested resource.
+        res.status(401).json({
+            success: false,
+            data: null,
             message: 'Task not found!!'
         })
     }
