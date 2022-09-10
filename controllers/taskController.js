@@ -32,7 +32,7 @@ exports.updateTask = expressHandler(async (req, res) => {
     // existTask de check xem co task nao da ton tai voi id giong khong
     const existTask = await Task.findOne({ _id: req.params.id });
     if (existTask) {
-        existTask.task = task;
+        existTask.title = title;
         existTask.status = status;
         existTask.type = type;
         existTask.time = time;
