@@ -65,8 +65,10 @@
         </div>
 
         <div class="task-input">
-            <input class="text-input" id="text-input" type="text" placeholder="Type here...">
-            <button class="add-btn" id="add-btn"> Add </button>
+            <form action="/api/task/createTask" method="post" autocomplete="off">
+                <input name="title" class="text-input" id="text-input" type="text" placeholder="Type here...">
+                <input type="submit" class="add-btn" id="add-btn"></input>
+            </form>
 
             <!-- <button onclick="off()" class="add-btn"> Add </button> -->
         </div>
@@ -220,7 +222,6 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/scripts.js"></script>
 </body>
 

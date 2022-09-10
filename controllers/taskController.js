@@ -10,8 +10,18 @@ const Task = require('../models/taskModel');
  */
 
 exports.createTask = asyncHandler(async (req, res) => {
-    const { title, status, type, time } = req.body;
-    const task = await Task.create({ title, status, type, time });
+    // const { title, status, type, time } = req.body;
+    console.log(req.body);
+    const task = new Task({
+        title: req.body.title,
+        type: req.body.type
+    });
+    if (req.body.type === 'hide') {
+
+    }
+    else {
+        task.save();
+    }
     //HTTP Status 201 indicates that as a result of HTTP POST request, 
     //one or more new resources have been successfully created on the server
     res.status(201).json({
@@ -89,7 +99,7 @@ exports.deleteTask = asyncHandler(async (req, res) => {
  * @access Public
  */
 
-exports.getSingleTasks = asyncHandler(async (req, res) => {
+exports.getSingleTask = asyncHandler(async (req, res) => {
     // existTask de check xem co task nao da ton tai voi id giong khong
     const existTask = await Task.findOne({ _id: req.params.id });
     if (existTask) {

@@ -72,86 +72,86 @@ let PTtip = document.querySelector(".PTtooltip");
 let BTtip = document.querySelector(".BTtooltip");
 
 // // API lấy danh sách công việc
-// let getTodos = async () => {
-//     try {
-//         let res = await axios.get("/todos");
-//         todos = res.data;
+let getTodos = async () => {
+    try {
+        let res = getAllTask();
+        todos = res.data;
 
-//         renderTasks(todos);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+        // renderTasks(todos);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-// const renderTasks = arr => {
+const renderTasks = arr => {
 
-//     // count amount of task of each type
-//     let personalTasks = 0, completePT = 0;
-//     let businessTasks = 0, completeBT = 0;
-//     if (arr.length != 0){
-//         arr.forEach(task => {
-//             if(task.type == "business") {
-//                 businessTasks += 1;
-//                 if(task.status == true) completeBT++;
-//             } 
-//             else {
-//                 personalTasks += 1;
-//                 if(task.status == true) completePT++;
-//             }
-//         });
-//     }
-//     let BTpercent = 0, PTpercent = 0;
+    // count amount of task of each type
+    let personalTasks = 0, completePT = 0;
+    let businessTasks = 0, completeBT = 0;
+    if (arr.length != 0) {
+        arr.forEach(task => {
+            if (task.type == "business") {
+                businessTasks += 1;
+                if (task.status == true) completeBT++;
+            }
+            else {
+                personalTasks += 1;
+                if (task.status == true) completePT++;
+            }
+        });
+    }
+    let BTpercent = 0, PTpercent = 0;
 
-//     BTpercent = (businessTasks != 0) ? (completeBT / businessTasks) : 1;
-//     PTpercent = (personalTasks != 0) ? (completePT / personalTasks) : 1;
+    BTpercent = (businessTasks != 0) ? (completeBT / businessTasks) : 1;
+    PTpercent = (personalTasks != 0) ? (completePT / personalTasks) : 1;
 
-//     // console.log(BTpercent + " " + PTpercent);
+    // console.log(BTpercent + " " + PTpercent);
 
-//     var BTprocess = document.querySelector(".BT-process-per");
-//     BTprocess.style.maxWidth = BTpercent*100+"%";
-//     var PTprocess = document.querySelector(".PT-process-per");
-//     PTprocess.style.maxWidth = PTpercent*100+"%";
+    var BTprocess = document.querySelector(".BT-process-per");
+    BTprocess.style.maxWidth = BTpercent * 100 + "%";
+    var PTprocess = document.querySelector(".PT-process-per");
+    PTprocess.style.maxWidth = PTpercent * 100 + "%";
 
-//     PTAmount.innerText = personalTasks;
-//     BTAmount.innerText = businessTasks;
-//     PTtip.innerText = Math.round(PTpercent*100)+"%";
-//     BTtip.innerText = Math.round(BTpercent*100)+"%";
+    PTAmount.innerText = personalTasks;
+    BTAmount.innerText = businessTasks;
+    PTtip.innerText = Math.round(PTpercent * 100) + "%";
+    BTtip.innerText = Math.round(BTpercent * 100) + "%";
 
-//     todoListEl.innerHTML = "";
+    todoListEl.innerHTML = "";
 
-//     // Kiểm tra danh sách công việc có trống hay không
-//     if (arr.length == 0) {
-//         todoListEl.innerHTML = `<p class="todos-empty">Không có công việc nào trong danh sách</p>`;
-//         return;
-//     }
+    // Kiểm tra danh sách công việc có trống hay không
+    if (arr.length == 0) {
+        todoListEl.innerHTML = `<p class="todos-empty">Không có công việc nào trong danh sách</p>`;
+        return;
+    }
 
-//     // hien thi danh sach
-//     let content = "";
-//     arr.forEach(task => {
-//         content += `
-//                     <div alt="You created this task at ${task.time}" class="taskItem ${task.status ? "active-task" : "" } ${task.type == "personal" ? "PT-task" : "BT-task"}">
-//                         <div class="task-content" id="task-line">
-//                             <input 
-//                                 class = "check-btn"
-//                                 type="checkbox" ${task.status ? "checked" : ""}
-//                                 onclick="toggleStatus(${task.id})"
-//                             />
-//                             ${task.title}
-//                         </div>
-//                         <div class="actions">
-//                             <div>
-//                                 <button class="delete-btn ${task.type == "personal" ? "PT-delete-btn" : "BT-delete-btn"}" onclick="deleteTask(${task.id})">
-//                                     <i class="fas fa-xmark">&times</i>
-//                                 </button>
-//                             </div>
-//                         </div>
-//                     </div>
-//             `
-//         }
-//     )
+    // hien thi danh sach
+    let content = "";
+    arr.forEach(task => {
+        content += `
+                    <div alt="You created this task at ${task.time}" class="taskItem ${task.status ? "active-task" : ""} ${task.type == "personal" ? "PT-task" : "BT-task"}">
+                        <div class="task-content" id="task-line">
+                            <input 
+                                class = "check-btn"
+                                type="checkbox" ${task.status ? "checked" : ""}
+                                onclick="toggleStatus(${task.id})"
+                            />
+                            ${task.title}
+                        </div>
+                        <div class="actions">
+                            <div>
+                                <button class="delete-btn ${task.type == "personal" ? "PT-delete-btn" : "BT-delete-btn"}" onclick="deleteTask(${task.id})">
+                                    <i class="fas fa-xmark">&times</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            `
+    }
+    )
 
-//     todoListEl.innerHTML = content;
-// }
+    todoListEl.innerHTML = content;
+}
 
 // // Xóa công việc
 // const deleteTask = async (id) => {
@@ -235,10 +235,34 @@ let BTtip = document.querySelector(".BTtooltip");
 // }
 
 // // Thêm công việc bằng nút "THÊM"
-btnAddTask.addEventListener("click", () => {
-    console.log("clicked");
-    // addTodo();
-})
+function validateForm() {
+    var type = document.forms["myForm"]["type"].value;
+    var title = document.forms["myForm"]["title"].value;
+
+    if (type == "hide") {
+        alert('Hãy chọn loại công việc')
+        return false;
+    }
+
+    if (title == "") {
+        alert("Tiêu đề công việc không được để trống");
+        return false;
+    };
+}
+
+// btnAddTask.addEventListener("click", () => {
+//     console.log("clicked");
+//     if (type === 'hide') {
+//         alert('Hãy chọn loại công việc')
+//         return false;
+//     }
+
+//     // Kiểm tra xem tiêu đề có trống hay không
+//     if (title == "") {
+//         alert("Tiêu đề công việc không được để trống");
+//         return false;
+//     };
+// })
 
 // // Thêm công việc bằng phím Enter
 // todoInputEl.addEventListener("keydown", (event) => {

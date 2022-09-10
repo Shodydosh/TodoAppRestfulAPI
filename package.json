@@ -28,6 +28,7 @@
     "express-async-handler": "^1.2.0",
     "mongoose": "^6.5.4",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "popups": "^1.1.3"
   }
 }

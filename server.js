@@ -2,8 +2,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const path = require('path');
 const taskRoute = require('./routes/task');
+
 
 const connectDB = require('./config/db');
 dotenv.config({ path: './env' });
@@ -18,19 +20,22 @@ if (process.env.MODE === 'development') {
 }
 const PORT = process.env.PORT || 5000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser());
 app.use('/api/task', taskRoute);
 app.get("get", (req, res) => {
     res.send('API is runnin good!');
 })
 
 
-// // //! EJS
-// app.set("view engine", "ejs")
-// app.get('/', function (req, res) {
-//     res.render('index');
-// });
+//! EJS
+app.set("view engine", "ejs")
+app.get('/', function (req, res) {
+    res.render('index');
+});
 // //! public
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 

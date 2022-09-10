@@ -54,24 +54,24 @@
     <div id="overlay">
         <h1>What have you planned recently?</h1>
 
-        <div class="type-selector">
-            <label class="task-type">
-                <select id="task-type">
-                    <option class="choice" value="hide"> Type of task </option>
-                    <option class="choice" value="personal"> Personal </option>
-                    <option class="choice" value="business"> Business </option>
-                </select>
-            </label>
-        </div>
+        <form name="myForm" action="/api/task" method="post" autocomplete="off" onsubmit="return validateForm()">
+            <div class="type-selector">
+                <label class="task-type">
+                    <select name="type" id="task-type">
+                        <option class="choice" value="hide"> Type of task </option>
+                        <option class="choice" value="personal"> Personal </option>
+                        <option class="choice" value="business"> Business </option>
+                    </select>
+                </label>
+            </div>
 
-        <div class="task-input">
-            <form action="/add" method="post" autocomplete="off">
+            <div class="task-input">
                 <input name="title" class="text-input" id="text-input" type="text" placeholder="Type here...">
                 <input type="submit" class="add-btn" id="add-btn"></input>
-            </form>
 
-            <!-- <button onclick="off()" class="add-btn"> Add </button> -->
-        </div>
+                <!-- <button onclick="off()" class="add-btn"> Add </button> -->
+            </div>
+        </form>
         <div class="close-overlay-btn">
             <button class="close-btn" onclick="off()"><i class="fas fa-arrow-left"></i></button>
         </div>
@@ -222,7 +222,6 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/scripts.js"></script>
 </body>
 
