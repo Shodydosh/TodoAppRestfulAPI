@@ -198,7 +198,7 @@
                 </div>
 
                 <div class="tasks">
-                    <% let task=await await collection.find().toArray(); tasks.forEach( (task)=> { %>
+                    <% tasksList.forEach(function(task){ %>
                         <div alt="You created this task at <%= task.time %>" class="taskItem ${<%= task.status %> ? "
                             active-task": "" } ${<%=task.type %> =="personal" ? "PT-task" : "BT-task" }">
                             <div class="task-content" id="task-line">
@@ -236,7 +236,7 @@
                         </div>
                     </div> -->
                             <!-- !NORMAL TASK -->
-                            <div alt="You created this task at ${task.time}" class="taskItem BT-task" }">
+                            <!-- <div alt="You created this task at ${task.time}" class="taskItem BT-task" }">
                                 <div class="task-content" id="task-line">
                                     <input class="check-btn" type="checkbox" class="checked" />
                                     ${task.title}
@@ -248,9 +248,9 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- !MARKED TASK -->
-                            <div alt="You created this task at ${task.time}" class="taskItem active-task BT-task" }">
+                            <!-- <div alt="You created this task at ${task.time}" class="taskItem active-task BT-task" }">
                                 <div class="task-content" id="task-line">
                                     <input class="check-btn" type="checkbox" class="checked" />
                                     ${task.title}
@@ -262,7 +262,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- //1 -->
                 </div>
 

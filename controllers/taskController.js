@@ -29,6 +29,7 @@ exports.createTask = asyncHandler(async (req, res) => {
         data: task,
         message: 'Task created successfully!!'
     });
+    redirect('/');
 })
 
 /**
@@ -125,14 +126,22 @@ exports.getSingleTask = asyncHandler(async (req, res) => {
 
 exports.getAllTask = asyncHandler(async (req, res) => {
     Task.find({})
-        .exec(function (err, tasks) {
-            if (err) {
-                console.log("Error retrieving tasks list!");
+        .exec(async function (err, tasks) {
+            if (tasks.length === 0) {
+                console.log('there are no tasks');
+                res.redirect('/');
             } else {
-                res.json(tasks);
-                html: () => {
-                    res.render('index.ejs', { tasks: tasks });
-                }
+
+                res.render("index.ejs", { tasksList: tasksList })
+                console.log(`"GET TASKSLIST"`.red);
             }
+            // if (err) {
+            //     console.log("Error retrieving tasks list!");
+            // } else {
+            //     res.json(tasks);
+            //     html: () => {
+            //         res.render('index.ejs', { tasks: tasks });
+            //     }
+            // }
         })
 })

@@ -6,15 +6,16 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const taskRoute = require('./routes/task');
 const ejsLint = require('ejs-lint');
+const Task = require('./models/taskModel');
 
 
 const connectDB = require('./config/db');
+const { getAllTask } = require('./controllers/taskController');
 dotenv.config({ path: './env' });
 connectDB();
 
 const app = express();
 app.use(express.json());
-
 
 if (process.env.MODE === 'development') {
     app.use(morgan('dev'));
@@ -29,7 +30,10 @@ app.use('/api/task', taskRoute);
 //! EJS
 app.set("view engine", "ejs")
 app.get('/', async function (req, res) {
-    res.render('index');
+    Task.find({}, function (err, tasks) {
+        res.render("index.ejs", { tasksList: tasks });
+        console.log(tasks);
+    });
 });
 
 //! public
