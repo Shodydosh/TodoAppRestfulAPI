@@ -124,7 +124,7 @@
             <!-- HEADER -->
             <div class="header">
                 <div class="greeting">
-                    <h1>What's up, TungEJS</h1>
+                    <h1>What's up, Tung</h1>
                 </div>
                 <div class="categories">
                     Categories
@@ -198,42 +198,26 @@
                 </div>
 
                 <div class="tasks">
+
                     <% tasksList.forEach(function(task){ %>
-                        <div alt="You created this task at <%= task.time %>" class="taskItem">
+                        <div alt="You created this task at <%= task.time %>" class="taskItem <%= task.status == true ? 'active-task': '' %>
+                            <%=task.type==  'personal' ? 'PT-task' : 'BT-task' %> ">
                             <div class="task-content" id="task-line">
-                                <input class="check-btn" type="checkbox" onclick="" />
+                                <input class="check-btn <%= task.status == true ? 'checked': '' %>" type="checkbox"
+                                    onclick="" />
                                 <%= task.title %>
                             </div>
                             <div class="actions">
                                 <div>
-                                    <button onclick="" class="delete-btn">
+                                    <button onclick="" class="delete-btn <%=task.type=='personal' ? 'PT-delete-btn'
+                                    : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
                                         <i class="fas fa-xmark">&times</i>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <% }) %>
-                            <!-- <% tasksList.forEach(function(task){ %>
-                        <div alt="You created this task at <%= task.time %>"
-                            class="taskItem ${<%= task.status == true ? " active-task": "" %> } ${
-                            <%=task.type== "personal" ? "PT-task" : "BT-task" %> }">
-                                <div class="task-content" id="task-line">
-                                    <input class="check-btn ${<%=task.status==false ? " checked" : "" %>}"
-                                    type="checkbox"
-                                    onclick="" />
-                                    <%= task.title %>
-                                </div>
-                                <div class="actions">
-                                    <div>
-                                        <button onclick="" class="delete-btn <%=task.type==" personal" ? "PT-delete-btn"
-                                            : "BT-delete-btn" %>">
-                                            <i class="fas fa-xmark">&times</i>
-                                        </button>
-                                    </div>
-                                </div>
-                        </div> -->
 
-                            <!-- <% }) %> -->
+                        <% }) %>
                             <!-- !TEMPLATE TASK -->
                             <!-- <div alt="You created this task at ${task.time}" class="taskItem ${task.status ? "active-task" : ""} ${task.type == "personal" ? "PT-task" : "BT-task"}">
                         <div class="task-content" id="task-line">

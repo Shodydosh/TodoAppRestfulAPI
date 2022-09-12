@@ -565,7 +565,7 @@
     background-color: #A5C9CA;
 }
 
-.tasks-list .tasks .active-delete-btn {
+.tasks-list .tasks .taskItem .active-delete-btn {
     background-color: #EAEBED;
 }
 
