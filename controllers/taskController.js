@@ -9,28 +9,24 @@ const Task = require('../models/taskModel');
  * @access Public
  */
 
-exports.createTask = asyncHandler(async (req, res) => {
-    // const { title, status, type, time } = req.body;
-    console.log(req.body);
-    const task = new Task({
-        title: req.body.title,
-        type: req.body.type
-    });
-    if (req.body.type === 'hide') {
+// exports.createTask = asyncHandler(async (req, res) => {
+//     // const { title, status, type, time } = req.body;
+//     console.log(req.body);
+//     const task = new Task({
+//         title: req.body.title,
+//         type: req.body.type
+//     });
+//     task.save();
 
-    }
-    else {
-        task.save();
-    }
-    //HTTP Status 201 indicates that as a result of HTTP POST request, 
-    //one or more new resources have been successfully created on the server
-    res.status(201).json({
-        success: true,
-        data: task,
-        message: 'Task created successfully!!'
-    });
-    redirect('/');
-})
+//     //HTTP Status 201 indicates that as a result of HTTP POST request, 
+//     //one or more new resources have been successfully created on the server
+//     res.status(201).json({
+//         success: true,
+//         data: task,
+//         message: 'Task created successfully!!'
+//     });
+//     redirect('localhost:5000');
+// })
 
 /**
  * @desc for update tasks 

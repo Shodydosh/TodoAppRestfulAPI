@@ -54,7 +54,7 @@
     <div id="overlay">
         <h1>What have you planned recently?</h1>
 
-        <form name="myForm" action="/api/task" method="post" autocomplete="off" onsubmit="return validateForm()">
+        <form name="myForm" action="/add" method="post" autocomplete="off" onsubmit="return validateForm()">
             <div class="type-selector">
                 <label class="task-type">
                     <select name="type" id="task-type">
@@ -209,10 +209,13 @@
                             </div>
                             <div class="actions">
                                 <div>
-                                    <button onclick="" class="delete-btn <%=task.type=='personal' ? 'PT-delete-btn'
-                                    : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
-                                        <i class="fas fa-xmark">&times</i>
-                                    </button>
+                                    <form action="/delete" method="delete">
+
+                                        <button onclick="" class="delete-btn <%=task.type=='personal' ? 'PT-delete-btn'
+                                        : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
+                                            <i class="fas fa-xmark">&times</i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
