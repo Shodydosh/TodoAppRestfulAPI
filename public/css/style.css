@@ -565,16 +565,16 @@
     background-color: #A5C9CA;
 }
 
+.tasks-list .tasks .active-delete-btn {
+    background-color: #EAEBED;
+}
+
 .tasks-list .tasks .active-task {
     font-style: italic;
     background-color: #EAEBED;
     opacity: 0.8;
 }
 
-.tasks-list .tasks .active-task .PT-delete-btn,
-.tasks-list .tasks .active-task .BT-delete-btn {
-    background-color: #EAEBED;
-}
 
 .tasks-list .tasks .taskItem .task-content {
     /* text-decoration: line-through; */

@@ -131,17 +131,8 @@ exports.getAllTask = asyncHandler(async (req, res) => {
                 console.log('there are no tasks');
                 res.redirect('/');
             } else {
-
                 res.render("index.ejs", { tasksList: tasksList })
                 console.log(`"GET TASKSLIST"`.red);
             }
-            // if (err) {
-            //     console.log("Error retrieving tasks list!");
-            // } else {
-            //     res.json(tasks);
-            //     html: () => {
-            //         res.render('index.ejs', { tasks: tasks });
-            //     }
-            // }
         })
 })

@@ -5,7 +5,11 @@
 
 // SIDENAV OPEN&CLOSE
 
-// let todos;
+
+
+let todos;
+
+console.log("scripts.js is now available".bgYellow);
 
 function openNav() {
     // mySidenav.style.display = "block";
@@ -76,12 +80,15 @@ let getTodos = async () => {
     try {
         let res = getAllTask();
         todos = res.data;
+        console.log(todos);
 
         // renderTasks(todos);
     } catch (error) {
         console.log(error);
     }
 }
+
+getTodos();
 
 const renderTasks = arr => {
 
@@ -167,134 +174,3 @@ function validateForm() {
         return false;
     };
 }
-
-// // Xóa công việc
-// const deleteTask = async (id) => {
-//     try {
-//         // Gọi API --> Xóa trên server
-//         await axios.delete(`/todos/${id}`);
-
-//         // Lọc ra các cv khác id của công việc muốn xóa
-//         todos = todos.filter(todo => todo.id != id);
-
-//         // Hiển thị lại trên giao diện
-//         toastDeleteMsg()
-//         renderTasks(todos)
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-// // Thay đổi trạng thái công việc
-// const toggleStatus = async (id) => {
-//     try {
-//         // Lấy ra cv cần thay đổi
-//         let todo = todos.find(todo => todo.id == id);
-
-//         // Thay đổi trạng thái của cv đó : true -> false , false -> true
-//         todo.status = !todo.status;
-
-//         // Gọi API
-//         await axios.put(`/todos/${id}`, todo);
-
-//         // Hiển thị lên trên giao diện
-//         if(todo.type == "business") resetBTAnimation();
-//         else resetPTAnimation();
-//         renderTasks(todos);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-// // Thêm công việc
-// const addTodo = async () => {
-//     try {
-//         // Lấy ra dữ liệu trong ô input
-//         let timeDate = getTime();
-//         let title = todoInputEl.value;
-//         let type = document.getElementById("task-type").value;
-
-//         // kiểm tra xem đã chọn loại task hay chưa
-//         if (type === 'hide') {
-//             alert('Hãy chọn loại công việc')
-//             return;
-//         }
-
-//         // Kiểm tra xem tiêu đề có trống hay không
-//         if (title == "") {
-//             alert("Tiêu đề công việc không được để trống");
-//             return;
-//         }
-
-//         // Tạo công việc mới
-//         let newTodo = {
-//             title: title,
-//             status: false,
-//             type: type,
-//             time: timeDate
-//         }
-
-//         // Gọi API tạo mới
-//         let res = await axios.post("/todos", newTodo);
-
-//         // Thêm cv mới vào mảng để quản lý
-//         todos.push(res.data);
-
-//         renderTasks(todos);
-//         todoInputEl.value = "";
-//         toastAddMsg();
-//         off();
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-// // Thêm công việc bằng nút "THÊM"
-
-// btnAddTask.addEventListener("click", () => {
-//     console.log("clicked");
-//     if (type === 'hide') {
-//         alert('Hãy chọn loại công việc')
-//         return false;
-//     }
-
-//     // Kiểm tra xem tiêu đề có trống hay không
-//     if (title == "") {
-//         alert("Tiêu đề công việc không được để trống");
-//         return false;
-//     };
-// })
-
-// // Thêm công việc bằng phím Enter
-// todoInputEl.addEventListener("keydown", (event) => {
-//     if (event.keyCode == 13) {
-//         addTodo();
-//     }
-// })
-
-// function getTime(){
-//     var today = new Date();
-//     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-//     var today = new Date();
-//     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-//     var dateTime = time+' '+date;
-
-//     return dateTime;
-// }
-
-// function resetPTAnimation() {
-//     const PT = document.querySelector(".PT-process-per");
-//     PT.style.animation = "none";
-//     PT.offsetHeight;
-//     PT.style.animation = null;
-// }
-
-// function resetBTAnimation() {
-//     const BT = document.querySelector(".BT-process-per");
-//     BT.style.animation = "none";
-//     BT.offsetHeight;
-//     BT.style.animation = null;
-// }
-
-// getTodos();
-

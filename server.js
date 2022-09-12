@@ -32,11 +32,11 @@ app.set("view engine", "ejs")
 app.get('/', async function (req, res) {
     Task.find({}, function (err, tasks) {
         res.render("index.ejs", { tasksList: tasks });
-        console.log(tasks);
+        // console.log(tasks);
     });
 });
 
-//! public
+//! PUBLIC
 app.use(express.static(path.join(__dirname, 'public')));
 
 //! HOSTING
