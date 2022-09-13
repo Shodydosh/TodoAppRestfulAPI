@@ -11,8 +11,6 @@ const asyncHandler = require('express-async-handler');
 
 
 const connectDB = require('./config/db');
-const { apple } = require('color');
-const { request } = require('http');
 dotenv.config({ path: './env' });
 connectDB();
 
@@ -27,7 +25,6 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser());
-// app.use('/api/task', taskRoute);
 
 //! EJS
 app.set("view engine", "ejs")
@@ -36,7 +33,6 @@ app.set("view engine", "ejs")
 app.get('/', async function (req, res) {
     Task.find({}, function (err, tasks) {
         res.render("index.ejs", { tasksList: tasks });
-        // console.log(tasks);
     });
 });
 
@@ -47,48 +43,20 @@ app.post('/add', async function (req, res) {
         type: req.body.type
     });
     task.save();
+    console.log("New task added".bgGreen);
     res.redirect('/');
-
-    //HTTP Status 201 indicates that as a result of HTTP POST request, 
-    //one or more new resources have been successfully created on the server
-    // res.status(201).json({
-    //     success: true,
-    //     data: task,
-    //     message: 'Task created successfully!!'
-    // });
 })
 
-app.post('/delete:_id', async function (req, res) {
-    // console.log(req.params.id);
-    // const existTask = await Task.deleteOne({ _id: req.params.id });
-    const { __id } = req.params;
-    Task.deleteOne({ __id })
+app.post('/delete/:_id', async function (req, res) {
+    const { _id } = req.params;
+    Task.deleteOne({ _id })
         .then(() => {
-            console.log("delete successfully");
+            console.log("Task deleted successfully".bgRed);
             res.redirect('/');
         })
         .catch((err) => {
             console.log(err);
         });
-    console.log("check");
-    // if (existTask) {
-    //     await existTask.remove();
-    //     // HTTP 200 OK success status response code indicates that the request has succeeded. 
-    //     // A 200 response is cacheable by default
-    //     res.redirect('/');
-    //     // res.status(200).json({
-    //     //     success: true,
-    //     //     message: 'Task deleted successfully!!'
-    //     // })
-    // } else {
-    //     // HTTP 401 Unauthorized response status code indicates that the client request has not been completed 
-    //     //because it lacks valid authentication credentials for the requested resource.
-    //     res.status(401).json({
-    //         success: false,
-    //         data: null,
-    //         message: 'Task not found!!'
-    //     })
-    // }
 });
 
 //! PUBLIC

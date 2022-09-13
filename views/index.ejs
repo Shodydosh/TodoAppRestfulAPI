@@ -209,7 +209,7 @@
                             </div>
                             <div class="actions">
                                 <div>
-                                    <form action="/delete" method="post">
+                                    <form action="/delete/<%= task._id %>" method="post">
 
                                         <button onclick="" class="delete-btn <%=task.type=='personal' ? 'PT-delete-btn'
                                         : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
