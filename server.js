@@ -11,6 +11,8 @@ const asyncHandler = require('express-async-handler');
 
 
 const connectDB = require('./config/db');
+const { apple } = require('color');
+const { request } = require('http');
 dotenv.config({ path: './env' });
 connectDB();
 
@@ -55,6 +57,39 @@ app.post('/add', async function (req, res) {
     //     message: 'Task created successfully!!'
     // });
 })
+
+app.post('/delete:_id', async function (req, res) {
+    // console.log(req.params.id);
+    // const existTask = await Task.deleteOne({ _id: req.params.id });
+    const { __id } = req.params;
+    Task.deleteOne({ __id })
+        .then(() => {
+            console.log("delete successfully");
+            res.redirect('/');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    console.log("check");
+    // if (existTask) {
+    //     await existTask.remove();
+    //     // HTTP 200 OK success status response code indicates that the request has succeeded. 
+    //     // A 200 response is cacheable by default
+    //     res.redirect('/');
+    //     // res.status(200).json({
+    //     //     success: true,
+    //     //     message: 'Task deleted successfully!!'
+    //     // })
+    // } else {
+    //     // HTTP 401 Unauthorized response status code indicates that the client request has not been completed 
+    //     //because it lacks valid authentication credentials for the requested resource.
+    //     res.status(401).json({
+    //         success: false,
+    //         data: null,
+    //         message: 'Task not found!!'
+    //     })
+    // }
+});
 
 //! PUBLIC
 app.use(express.static(path.join(__dirname, 'public')));

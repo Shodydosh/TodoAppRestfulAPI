@@ -7,6 +7,6 @@ const { createTask, updateTask, getAllTask, deleteTask, getSingleTask } = requir
 router.route('/').get(getAllTask);
 router.route('/:id').get(getSingleTask);
 router.route('/:id').patch(updateTask);
-router.route('/:id').delete(deleteTask);
+// router.route('/:id').delete(deleteTask);
 
 module.exports = router;
