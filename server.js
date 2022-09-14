@@ -41,17 +41,27 @@ app.get('/taskTypeData', async function (req, res) {
     Task.find({}, function (err, tasks) {
         let PTtask = 0;
         let BTtask = 0;
+        let PTtaskCompleted = 0;
+        let BTtaskCompleted = 0;
 
         tasks.forEach(task => {
-            if (task.type === 'personal') PTtask++;
-            else BTtask++;
+            if (task.type === 'personal') {
+                if (task.status === true) PTtaskCompleted++;
+                PTtask++;
+            }
+            else {
+                if (task.status === true) BTtaskCompleted++;
+                BTtask++;
+            }
         });
 
-        console.log("in server: " + PTtask, BTtask);
+        console.log("in server: " + PTtask, BTtask, PTtaskCompleted, BTtaskCompleted);
 
         res.send({
             PTtask: PTtask,
-            BTtask: BTtask
+            BTtask: BTtask,
+            PTtaskCompleted: PTtaskCompleted,
+            BTtaskCompleted: BTtaskCompleted
         })
     })
 });

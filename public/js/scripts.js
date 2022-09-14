@@ -5,18 +5,6 @@
 
 // SIDENAV OPEN&CLOSE
 
-let taskTypeData = async () => {
-    let res = await fetch('./taskTypeData');
-    const text = await res.text();
-    const BTtaskData = res.BTtask;
-    console.log(BTtaskData);
-    console.log(text);
-    console.log(res.json);
-    console.log(res.json.PTtask);
-    console.log(JSON.stringify(res.body));
-}
-taskTypeData();
-
 function openNav() {
     // mySidenav.style.display = "block";
     document.getElementById("mySidenav").style.width = "100%";
@@ -81,50 +69,39 @@ let BTAmount = document.getElementById("BTnum");
 let PTtip = document.querySelector(".PTtooltip");
 let BTtip = document.querySelector(".BTtooltip");
 
-const renderTasks = arr => {
 
 
-    // count amount of task of each type
-    let personalTasks = data.PTtask, completePT = 0;
-    let businessTasks = data.BTtask, completeBT = 0;
-    console.log(BTtask, PTtask);
-    // if (arr.length != 0) {
-    //     arr.forEach(task => {
-    //         if (task.type == "business") {
-    //             businessTasks += 1;
-    //             if (task.status == true) completeBT++;
-    //         }
-    //         else {
-    //             personalTasks += 1;
-    //             if (task.status == true) completePT++;
-    //         }
-    //     });
-    // }
-    let BTpercent = 0, PTpercent = 0;
+let getTaskTypeData = async () => {
+    let res = await fetch('./taskTypeData');
+    const text = await res.text();
+    let businessTasks = JSON.parse(text).BTtask;
+    let personalTasks = JSON.parse(text).PTtask;
+    let completeBTtask = JSON.parse(text).BTtaskCompleted;
+    let completePTtask = JSON.parse(text).PTtaskCompleted;
+    console.log(personalTasks, businessTasks);
 
-    BTpercent = (businessTasks != 0) ? (completeBT / businessTasks) : 1;
-    PTpercent = (personalTasks != 0) ? (completePT / personalTasks) : 1;
+    //* SET THE AMOUNT OF TASKS
+    PTAmount.innerText = personalTasks;
+    BTAmount.innerText = businessTasks;
 
-    // console.log(BTpercent + " " + PTpercent);
+    //* CALCULATE THE PERCENTAGE OF DONE TASKS
+    let BTpercent = (businessTasks != 0) ? (completeBTtask / businessTasks) : 1;
+    let PTpercent = (personalTasks != 0) ? (completePTtask / personalTasks) : 1;
+
+    console.log(BTpercent + " " + PTpercent);
 
     var BTprocess = document.querySelector(".BT-process-per");
     BTprocess.style.maxWidth = BTpercent * 100 + "%";
     var PTprocess = document.querySelector(".PT-process-per");
     PTprocess.style.maxWidth = PTpercent * 100 + "%";
 
-    PTAmount.innerText = personalTasks;
-    BTAmount.innerText = businessTasks;
     PTtip.innerText = Math.round(PTpercent * 100) + "%";
     BTtip.innerText = Math.round(BTpercent * 100) + "%";
-
-    todoListEl.innerHTML = "";
-
-    // Kiểm tra danh sách công việc có trống hay không
-    if (arr.length == 0) {
-        todoListEl.innerHTML = `<p class="todos-empty">Không có công việc nào trong danh sách</p>`;
-        return;
-    }
 }
+
+getTaskTypeData();
+
+
 
 function validateForm() {
     var type = document.forms["myForm"]["type"].value;
