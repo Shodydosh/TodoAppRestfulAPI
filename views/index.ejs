@@ -68,7 +68,7 @@
 
             <div class="task-input">
                 <input name="title" class="text-input" id="text-input" type="text" placeholder="Type here...">
-                <input type="submit" class="add-btn" id="add-btn"></input>
+                <input onclick="" type="submit" class="add-btn" id="add-btn"></input>
 
                 <!-- <button onclick="off()" class="add-btn"> Add </button> -->
             </div>
@@ -207,7 +207,7 @@
                             <div class="task-content" id="task-line">
                                 <form action="/update/<%= task._id %>" method="post">
                                     <button name="status" value="<%= task.status == true ? true : false %>"
-                                        type="submit" onclick="changeIcon(this)" class="check-btn <%=task.type=='personal' ? 'PT-delete-btn'
+                                        type="submit" onclick="" class="check-btn <%=task.type=='personal' ? 'PT-delete-btn'
                                     : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
                                         <i class="<%= task.status==true ? 'gg-radio-checked' : 'gg-radio-check' %>
                                                 "></i>
@@ -222,7 +222,7 @@
                                 <div>
                                     <form action="/delete/<%= task._id %>" method="post">
 
-                                        <button onclick="" class="delete-btn <%=task.type=='personal' ? 'PT-delete-btn'
+                                        <button onclick="toastAddMsg()" class="delete-btn <%=task.type=='personal' ? 'PT-delete-btn'
                                         : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
                                             <i class="fas fa-xmark">&times</i>
                                         </button>
@@ -238,15 +238,6 @@
 
         </div>
     </div>
-
-    <script>
-        function changeIcon(anchor) {
-            console.log("checked");
-            var icon = anchor.querySelector("i");
-            icon.classList.toggle('gg-check');
-            icon.classList.toggle('gg-shape-circle');
-        }
-    </script>
     <script src="./js/scripts.js"></script>
 </body>
 

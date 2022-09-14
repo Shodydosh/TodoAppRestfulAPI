@@ -1,10 +1,10 @@
-// //! Chức năng
-// //! 1. Thêm công việc + loại công việc 
-// //! 2. Xóa công việc
-// //! 3. Thay đổi trạng thái công việc
+//! Chức năng
+//! 1. Hiển thị màu, trạng thái công việc dựa trên data lấy được từ database
+//! 2. Thêm công việc + loại công việc 
+//! 3. Xóa công việc
+//! 4. Thay đổi trạng thái công việc
 
 // SIDENAV OPEN&CLOSE
-
 function openNav() {
     // mySidenav.style.display = "block";
     document.getElementById("mySidenav").style.width = "100%";
@@ -15,9 +15,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
 }
 
-//
 // OVERLAY ADDING BUTTON
-
 function on() {
     document.getElementById("overlay").style.display = "block";
 }
@@ -26,6 +24,9 @@ function off() {
     document.getElementById("overlay").style.display = "none";
 }
 
+// ADD BUTTON
+const newTaskAddingButton = document.querySelector('.add-btn');
+
 // Toast msg
 const toastAdd = document.querySelector('.toast')
 const closeAddToastBtn = document.querySelector('.close')
@@ -33,7 +34,9 @@ const closeAddToastBtn = document.querySelector('.close')
 const toastDelete = document.querySelector('.toast-delete')
 const closeDeleteToastBtn = document.querySelector('.delete-close')
 
+
 function toastDeleteMsg() {
+    console.log('toastDelete');
     toastDelete.classList.add('active');
 
     setTimeout(() => {
@@ -46,6 +49,7 @@ function toastDeleteMsg() {
 }
 
 function toastAddMsg() {
+    console.log('toastAdd');
     toastAdd.classList.add('active');
 
     setTimeout(() => {
@@ -57,13 +61,16 @@ function toastAddMsg() {
     })
 }
 
+newTaskAddingButton.addEventListener('click', () => {
+    toastAddMsg();
+})
 
-// //! Truy cập 
+//! Truy cập 
 let btnAddTask = document.getElementById("add-btn")
 let todoInputEl = document.getElementById("text-input");
 // let todoListEl = document.querySelector(".tasks")
 
-// //! Process bar
+//! Process bar
 let PTAmount = document.getElementById("PTnum");
 let BTAmount = document.getElementById("BTnum");
 let PTtip = document.querySelector(".PTtooltip");
@@ -78,7 +85,6 @@ let getTaskTypeData = async () => {
     let personalTasks = JSON.parse(text).PTtask;
     let completeBTtask = JSON.parse(text).BTtaskCompleted;
     let completePTtask = JSON.parse(text).PTtaskCompleted;
-    console.log(personalTasks, businessTasks);
 
     //* SET THE AMOUNT OF TASKS
     PTAmount.innerText = personalTasks;
@@ -87,8 +93,6 @@ let getTaskTypeData = async () => {
     //* CALCULATE THE PERCENTAGE OF DONE TASKS
     let BTpercent = (businessTasks != 0) ? (completeBTtask / businessTasks) : 1;
     let PTpercent = (personalTasks != 0) ? (completePTtask / personalTasks) : 1;
-
-    console.log(BTpercent + " " + PTpercent);
 
     var BTprocess = document.querySelector(".BT-process-per");
     BTprocess.style.maxWidth = BTpercent * 100 + "%";
@@ -100,8 +104,6 @@ let getTaskTypeData = async () => {
 }
 
 getTaskTypeData();
-
-
 
 function validateForm() {
     var type = document.forms["myForm"]["type"].value;

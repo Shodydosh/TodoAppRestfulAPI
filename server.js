@@ -55,8 +55,6 @@ app.get('/taskTypeData', async function (req, res) {
             }
         });
 
-        console.log("in server: " + PTtask, BTtask, PTtaskCompleted, BTtaskCompleted);
-
         res.send({
             PTtask: PTtask,
             BTtask: BTtask,
@@ -67,11 +65,11 @@ app.get('/taskTypeData', async function (req, res) {
 });
 
 app.post('/add', async function (req, res) {
-    console.log(req.body);
     const task = new Task({
         title: req.body.title,
         type: req.body.type
     });
+
     task.save();
     console.log("New task added".bgGreen);
     res.redirect('/');
