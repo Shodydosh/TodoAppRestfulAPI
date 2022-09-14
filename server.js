@@ -30,10 +30,30 @@ app.use(bodyParser());
 app.set("view engine", "ejs")
 
 //! METHODS
+
 app.get('/', async function (req, res) {
     Task.find({}, function (err, tasks) {
         res.render("index.ejs", { tasksList: tasks });
     });
+});
+
+app.get('/taskTypeData', async function (req, res) {
+    Task.find({}, function (err, tasks) {
+        let PTtask = 0;
+        let BTtask = 0;
+
+        tasks.forEach(task => {
+            if (task.type === 'personal') PTtask++;
+            else BTtask++;
+        });
+
+        console.log("in server: " + PTtask, BTtask);
+
+        res.send({
+            PTtask: PTtask,
+            BTtask: BTtask
+        })
+    })
 });
 
 app.post('/add', async function (req, res) {
@@ -52,6 +72,20 @@ app.post('/delete/:_id', async function (req, res) {
     Task.deleteOne({ _id })
         .then(() => {
             console.log("Task deleted successfully".bgRed);
+            res.redirect('/');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.post('/update/:_id', async function (req, res) {
+    const { _id } = req.params;
+    Task.findByIdAndUpdate({ _id }, {
+        status: (req.body.status == 'true' ? 'false' : 'true')
+    })
+        .then(() => {
+            console.log("Task updated successfully".bgCyan);
             res.redirect('/');
         })
         .catch((err) => {

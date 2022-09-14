@@ -10,6 +10,7 @@
         href="https://cdn0.iconfinder.com/data/icons/education-2-27/32/user_staff_person_man_profile_boss_circle-512.png"
         type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/icons.css">
     <link rel="stylesheet" href="./assets/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
     <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 </head>
@@ -200,14 +201,33 @@
                 <div class="tasks">
 
                     <% tasksList.forEach(function(task){ %>
+
                         <div alt="You created this task at <%= task.time %>" class="taskItem <%= task.status == true ? 'active-task': '' %>
-                            <%=task.type==  'personal' ? 'PT-task' : 'BT-task' %> ">
+                            <%=task.type == 'personal' ? 'PT-task' : 'BT-task' %> ">
                             <div class="task-content" id="task-line">
-                                <input class="check-btn" <%=task.status==true ? 'checked' : '' %> type="checkbox"
-                                onclick="" />
-                                <%= task.title %>
+                                <form action="/update/<%= task._id %>" method="post">
+                                    <button name="status" value="<%= task.status == true ? true : false %>"
+                                        type="submit" onclick="changeIcon(this)" class="check-btn <%=task.type=='personal' ? 'PT-delete-btn'
+                                    : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
+                                        <i class="<%= task.status==true ? 'gg-radio-checked' : 'gg-radio-check' %>
+                                                "></i>
+                                    </button>
+                                </form>
+
+                                <div class="task-title">
+                                    <%= task.title %>
+                                </div>
                             </div>
                             <div class="actions">
+                                <!-- <div>
+                                    <form action="/update/<%= task._id %>" method="post">
+                                        <button type="submit" onclick="changeIcon(this)" class="check-btn <%=task.type=='personal' ? 'PT-delete-btn'
+                                        : 'BT-delete-btn' %> <%= task.status == true ? 'active-delete-btn': '' %>">
+                                            <i class="<%= task.status==true ? 'gg-shape-circle' : 'gg-check' %>
+                                                    "></i>
+                                        </button>
+                                    </form>
+                                </div> -->
                                 <div>
                                     <form action="/delete/<%= task._id %>" method="post">
 
@@ -221,54 +241,6 @@
                         </div>
 
                         <% }) %>
-                            <!-- !TEMPLATE TASK -->
-                            <!-- <div alt="You created this task at ${task.time}" class="taskItem ${task.status ? "active-task" : ""} ${task.type == "personal" ? "PT-task" : "BT-task"}">
-                        <div class="task-content" id="task-line">
-                            <input 
-                                class = "check-btn"
-                                type="checkbox" ${task.status ? "checked" : ""}
-                                onclick="toggleStatus(${task.id})"
-                            />task.status \
-                            \
-A3456                            ${task.title}
-                        </div>
-                        <div class="actions">
-                            <div>
-                                <button class="delete-btn ${task.type == "personal" ? "PT-delete-btn" : "BT-delete-btn"}" onclick="deleteTask(${task.id})">
-                                    <i class="fas fa-xmark">&times</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
-                            <!-- !NORMAL TASK -->
-                            <!-- <div alt="You created this task at ${task.time}" class="taskItem BT-task" }">
-                                <div class="task-content" id="task-line">
-                                    <input class="check-btn" type="checkbox" class="checked" />
-                                    ${task.title}
-                                </div>
-                                <div class="actions">
-                                    <div>
-                                        <button class="delete-btn BT-delete-btn" onclick="">
-                                            <i class="fas fa-xmark">&times</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- !MARKED TASK -->
-                            <!-- <div alt="You created this task at ${task.time}" class="taskItem active-task BT-task" }">
-                                <div class="task-content" id="task-line">
-                                    <input class="check-btn" type="checkbox" class="checked" />
-                                    ${task.title}
-                                </div>
-                                <div class="actions">
-                                    <div>
-                                        <button class="delete-btn BT-delete-btn" onclick="">
-                                            <i class="fas fa-xmark">&times</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- //1 -->
                 </div>
 
             </div>
@@ -276,6 +248,14 @@ A3456                            ${task.title}
         </div>
     </div>
 
+    <script>
+        function changeIcon(anchor) {
+            console.log("checked");
+            var icon = anchor.querySelector("i");
+            icon.classList.toggle('gg-check');
+            icon.classList.toggle('gg-shape-circle');
+        }
+    </script>
     <script src="./js/scripts.js"></script>
 </body>
 

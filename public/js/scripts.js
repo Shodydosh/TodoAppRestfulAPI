@@ -5,11 +5,17 @@
 
 // SIDENAV OPEN&CLOSE
 
-
-
-let todos;
-
-console.log("scripts.js is now available".bgYellow);
+let taskTypeData = async () => {
+    let res = await fetch('./taskTypeData');
+    const text = await res.text();
+    const BTtaskData = res.BTtask;
+    console.log(BTtaskData);
+    console.log(text);
+    console.log(res.json);
+    console.log(res.json.PTtask);
+    console.log(JSON.stringify(res.body));
+}
+taskTypeData();
 
 function openNav() {
     // mySidenav.style.display = "block";
@@ -75,38 +81,25 @@ let BTAmount = document.getElementById("BTnum");
 let PTtip = document.querySelector(".PTtooltip");
 let BTtip = document.querySelector(".BTtooltip");
 
-// // API lấy danh sách công việc
-let getTodos = async () => {
-    try {
-        let res = getAllTask();
-        todos = res.data;
-        console.log(todos);
-
-        // renderTasks(todos);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-getTodos();
-
 const renderTasks = arr => {
 
+
     // count amount of task of each type
-    let personalTasks = 0, completePT = 0;
-    let businessTasks = 0, completeBT = 0;
-    if (arr.length != 0) {
-        arr.forEach(task => {
-            if (task.type == "business") {
-                businessTasks += 1;
-                if (task.status == true) completeBT++;
-            }
-            else {
-                personalTasks += 1;
-                if (task.status == true) completePT++;
-            }
-        });
-    }
+    let personalTasks = data.PTtask, completePT = 0;
+    let businessTasks = data.BTtask, completeBT = 0;
+    console.log(BTtask, PTtask);
+    // if (arr.length != 0) {
+    //     arr.forEach(task => {
+    //         if (task.type == "business") {
+    //             businessTasks += 1;
+    //             if (task.status == true) completeBT++;
+    //         }
+    //         else {
+    //             personalTasks += 1;
+    //             if (task.status == true) completePT++;
+    //         }
+    //     });
+    // }
     let BTpercent = 0, PTpercent = 0;
 
     BTpercent = (businessTasks != 0) ? (completeBT / businessTasks) : 1;
@@ -131,33 +124,6 @@ const renderTasks = arr => {
         todoListEl.innerHTML = `<p class="todos-empty">Không có công việc nào trong danh sách</p>`;
         return;
     }
-
-    // hien thi danh sach
-    let content = "";
-    arr.forEach(task => {
-        content += `
-                    <div alt="You created this task at ${task.time}" class="taskItem ${task.status ? "active-task" : ""} ${task.type == "personal" ? "PT-task" : "BT-task"}">
-                        <div class="task-content" id="task-line">
-                            <input 
-                                class = "check-btn"
-                                type="checkbox" ${task.status ? "checked" : ""}
-                                onclick="toggleStatus(${task.id})"
-                            />
-                            ${task.title}
-                        </div>
-                        <div class="actions">
-                            <div>
-                                <button class="delete-btn ${task.type == "personal" ? "PT-delete-btn" : "BT-delete-btn"}" onclick="deleteTask(${task.id})">
-                                    <i class="fas fa-xmark">&times</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-            `
-    }
-    )
-
-    todoListEl.innerHTML = content;
 }
 
 function validateForm() {

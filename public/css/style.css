@@ -572,13 +572,14 @@
 .tasks-list .tasks .active-task {
     font-style: italic;
     background-color: #EAEBED;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 
 .tasks-list .tasks .taskItem .task-content {
     /* text-decoration: line-through; */
     /* background-color: red; */
+    display: flex;
     margin-top: 15px;
     font-size: 20px;
     color: black;
@@ -586,12 +587,17 @@
     overflow: hidden;
 }
 
+.tasks-list .tasks .taskItem .task-content .task-title {
+    margin-left: 12px;
+}
+
 .tasks-list .tasks .marked {
     text-decoration: line-through;
     opacity: 0.3;
 }
 
-.tasks-list .tasks .taskItem .delete-btn {
+.tasks-list .tasks .taskItem .delete-btn,
+.tasks-list .tasks .taskItem .check-btn {
     border: none;
     outline: none;
     text-decoration: none;
@@ -608,6 +614,12 @@
     font-weight: 200;
     font-style: bold;
     padding-top: 1px;
+}
+
+.check-btn {
+    /* font-size: 20px;
+    padding-top: 12px;
+    padding-right: 6px; */
 }
 
 /* MARKED */
