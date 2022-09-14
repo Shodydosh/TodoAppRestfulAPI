@@ -8,16 +8,16 @@
 
 ## Technologies
 
-* node.js,
-* express,
-* ejs,
-* MongoDB, 
-* mongoose, 
-* bodyParser, 
-* loadash, 
-* path,
-* dotenv,
-* morgan.
+* node.js
+* express
+* ejs
+* MongoDB
+* mongoose
+* bodyParser
+* loadash
+* path
+* dotenv
+* morgan
 
 ## Instalation
 ```node.js
