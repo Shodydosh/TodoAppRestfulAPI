@@ -7,7 +7,6 @@ const path = require('path');
 // const taskRoute = require('./routes/task');
 const ejsLint = require('ejs-lint');
 const Task = require('./models/taskModel');
-const asyncHandler = require('express-async-handler');
 
 
 const connectDB = require('./config/db');

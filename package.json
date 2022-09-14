@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/Shodydosh/TodoAppRestfulAPI.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Shodydosh",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Shodydosh/TodoAppRestfulAPI/issues"
   },
