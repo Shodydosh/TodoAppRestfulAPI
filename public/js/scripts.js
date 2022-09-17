@@ -76,8 +76,6 @@ let BTAmount = document.getElementById("BTnum");
 let PTtip = document.querySelector(".PTtooltip");
 let BTtip = document.querySelector(".BTtooltip");
 
-
-
 let getTaskTypeData = async () => {
     let res = await fetch('./taskTypeData');
     const text = await res.text();
@@ -87,20 +85,20 @@ let getTaskTypeData = async () => {
     let completePTtask = JSON.parse(text).PTtaskCompleted;
 
     //* SET THE AMOUNT OF TASKS
-    PTAmount.innerText = personalTasks;
-    BTAmount.innerText = businessTasks;
+    if (PTAmount) PTAmount.innerText = personalTasks;
+    if (BTAmount) BTAmount.innerText = businessTasks;
 
     //* CALCULATE THE PERCENTAGE OF DONE TASKS
     let BTpercent = (businessTasks != 0) ? (completeBTtask / businessTasks) : 1;
     let PTpercent = (personalTasks != 0) ? (completePTtask / personalTasks) : 1;
 
     var BTprocess = document.querySelector(".BT-process-per");
-    BTprocess.style.maxWidth = BTpercent * 100 + "%";
+    if (BTprocess) BTprocess.style.maxWidth = BTpercent * 100 + "%";
     var PTprocess = document.querySelector(".PT-process-per");
-    PTprocess.style.maxWidth = PTpercent * 100 + "%";
+    if (PTprocess) PTprocess.style.maxWidth = PTpercent * 100 + "%";
 
-    PTtip.innerText = Math.round(PTpercent * 100) + "%";
-    BTtip.innerText = Math.round(BTpercent * 100) + "%";
+    if (PTtip) PTtip.innerText = Math.round(PTpercent * 100) + "%";
+    if (BTtip) BTtip.innerText = Math.round(BTpercent * 100) + "%";
 }
 
 getTaskTypeData();

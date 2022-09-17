@@ -20,6 +20,7 @@
 }
 
 .wave {
+    z-index: 2;
     position: absolute;
     opacity: 0.4;
     width: 1200px;
@@ -247,24 +248,40 @@
     margin-bottom: 30px;
 }
 
+.wrapper .sizenav ul {
+    z-index: 3;
+}
+
 .wrapper .sidenav ul li {
     font-size: 35px;
     padding: 15px 20px;
-}
-
-.wrapper .sidenav ul li a {
     color: #fff;
-    display: block;
+    display: flex;
 }
 
-.wrapper .sidenav ul li a .fas {
+.wrapper .sidenav ul li :hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.wrapper .sidenav ul li .fas {
     padding-left: 20px;
-    padding-right: 40px;
+    margin-right: 40px;
     width: 25px;
+    cursor: pointer;
 }
 
 .wrapper .sidenav ul li:hover {
     transition: 0.8s;
+}
+
+.wrapper .sidenav .sideNavBtn {
+    color: #fff;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 /* TOPNAV */
@@ -362,7 +379,7 @@
 .wrapper .overall-tasks .personal-task {
     color: black;
     padding: 10px;
-    width: 50%;
+    width: 100%;
     margin: 10px;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;

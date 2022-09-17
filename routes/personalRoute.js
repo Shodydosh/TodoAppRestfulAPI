@@ -28,26 +28,20 @@ app.use(bodyParser());
 //! EJS
 app.set("view engine", "ejs")
 
-//! ROUTES
-// var personalRoute = require('./routes/personalRoute')
-// app.use('/personalView', personalRoute);
-// var businessRoute = require('./routes/businessRoute')
-// app.use('/businessView', businessRoute);
-
 //! METHODS
 
 app.get('/', async function (req, res) {
     Task.find({}, function (err, tasks) {
-        res.render("index.ejs", { tasksList: tasks });
-    });
-});
-
-`app.get('/personalTask', async function (req, res) {
-    Task.find({ type: 'personal' }, function (err, tasks) {
         res.render("personalView.ejs", { tasksList: tasks });
     });
 });
-`
+
+// app.get('/personalTask', async function (req, res) {
+//     Task.find({ type: 'personal' }, function (err, tasks) {
+//         res.render("personalView.ejs", { tasksList: tasks });
+//     });
+// });
+
 app.get('/businessTask', async function (req, res) {
     Task.find({ type: 'business' }, function (err, tasks) {
         res.render("businessView.ejs", { tasksList: tasks });
