@@ -22,9 +22,7 @@
 ## Instalation
 ```node.js
   git clone https://github.com/Shodydosh/TodoAppRestfulAPI.git
-  run npm install
-  run mongod in the terminal
-  run node app.js
+  run npm run dev
   open localhost:5000
   ```
 ## Requirements
