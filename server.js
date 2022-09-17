@@ -42,12 +42,12 @@ app.get('/', async function (req, res) {
     });
 });
 
-`app.get('/personalTask', async function (req, res) {
+app.get('/personalTask', async function (req, res) {
     Task.find({ type: 'personal' }, function (err, tasks) {
         res.render("personalView.ejs", { tasksList: tasks });
     });
 });
-`
+
 app.get('/businessTask', async function (req, res) {
     Task.find({ type: 'business' }, function (err, tasks) {
         res.render("businessView.ejs", { tasksList: tasks });
